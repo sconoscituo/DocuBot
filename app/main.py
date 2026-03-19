@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from app.database import init_db
 from app.routers import users, documents, chats, payments
 from app.config import config
+from app.middleware.security_headers import SecurityHeadersMiddleware
 
 
 @asynccontextmanager
@@ -26,6 +27,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(SecurityHeadersMiddleware)
 
 app.include_router(users.router)
 app.include_router(documents.router)
