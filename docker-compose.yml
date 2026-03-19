@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - SECRET_KEY=${SECRET_KEY}
+      - DATABASE_URL=sqlite+aiosqlite:///./data/docubot.db
+      - UPLOAD_DIR=./data/uploads
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
