@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.database import init_db
-from app.routers import users, documents, chats, payments
+from app.routers import users, documents, chats, payments, search
 from app.config import config
 from app.middleware.security_headers import SecurityHeadersMiddleware
 
@@ -33,6 +33,7 @@ app.include_router(users.router)
 app.include_router(documents.router)
 app.include_router(chats.router)
 app.include_router(payments.router)
+app.include_router(search.router)
 
 
 @app.get("/")
